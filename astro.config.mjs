@@ -4,6 +4,8 @@ import icon from "astro-icon";
 import { defineConfig, squooshImageService } from 'astro/config';
 
 export default defineConfig({
+  site: 'https://dtacho.github.io/',
+  base: 'dzaikovskaia.github.io',
   integrations: [tailwind(), mdx(), icon({
     include: {
       mdi: ["*"]

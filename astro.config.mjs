@@ -5,7 +5,7 @@ import { defineConfig, squooshImageService } from 'astro/config';
 
 export default defineConfig({
   site: 'https://dtacho.github.io/',
-  base: 'dzaikovskaia.github.io',
+  base: 'dtacho.github.io',
   integrations: [tailwind(), mdx(), icon({
     include: {
       mdi: ["*"]

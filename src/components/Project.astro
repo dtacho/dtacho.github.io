@@ -11,7 +11,7 @@ const { content } = Astro.props;
           <h1 class="mb-10 font text-3xl text-black dark:text-white lg:text-5xl">{content.frontmatter.title}</h1>
       </div>
 
-      <p>{content.frontmatter.description}</p>
+      <p class="text-black dark:text-white">{content.frontmatter.description}</p>
   </div>
   <div data-testid="hero-img" class="mb-10 flex w-1/2 items-center justify-center">
       <Image

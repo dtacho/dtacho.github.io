@@ -8,7 +8,6 @@ const imageImports = import.meta.glob('/src/assets/images/*', { eager: true });
 const projects = await getCollection('projects', ({ data }) => {
 	return !data.inProgress;
 });
-
 ---
 
 <section

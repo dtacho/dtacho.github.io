@@ -1,0 +1,64 @@
+---
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('project', ({ data }) => {
+	return !data.inProgress;
+});
+---
+
+<section
+	data-testid="project"
+	id="projects"
+	class="mb-10 flex flex-col items-center justify-center md:mb-0 md:h-screen"
+>
+	<h2 class="font-monospace text-2xl text-orange lg:text-4xl">Projects</h2>
+	<span class="mb-10 h-1 w-10 bg-orange"></span>
+	<div class="mb-10 flex w-full flex-col flex-wrap items-center md:flex-row" id="project-cards-container"></div>
+</section>
+
+<script type="module">
+  // Get the `name` parameter from the URL
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const projectName = urlSearchParams.get('name');
+
+  // Get the project cards container element
+  const projectCardsContainer = document.getElementById('project-cards-container');
+
+  if (projectCardsContainer) {
+    // Function to create a project card
+    function createCard(project) {
+      const card = document.createElement('div');
+      card.className = 'card';  // Add necessary classes for your card layout
+
+      card.innerHTML = `
+        <a href="${project.data.link}" class="card-link">
+          <img src="${project.data.img}" alt="${project.data.img_alt}" />
+          <h3>${project.data.title}</h3>
+          <p>${project.data.description}</p>
+          <div>${project.data.tags.join(', ')}</div>
+        </a>
+      `;
+      return card;
+    }
+
+    if (projectName) {
+      // Filter the projects based on the `name` parameter
+      const selectedProject = projects.find(project => project.slug === projectName);
+
+      if (selectedProject) {
+        // Create the card for the selected project
+        const card = createCard(selectedProject);
+        projectCardsContainer.appendChild(card);
+      } else {
+        // No project found, show a fallback message
+        projectCardsContainer.innerHTML = '<p>No project found for the specified name.</p>';
+      }
+    } else {
+      // If no name param, show all projects
+      projects.forEach((project) => {
+        const card = createCard(project);
+        projectCardsContainer.appendChild(card);
+      });
+    }
+  }
+</script>

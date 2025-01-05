@@ -32,6 +32,9 @@ const {
 			<div class="relative flex items-end overflow-hidden rounded-xl">
 			  {img ? (
 				<Image src={img} alt={alt} format="png" width={400} height={400} loading="eager" />
+			 ) : (
+        		   // Fallback image in case `img` is not provided
+         		   <Image src="/path/to/default-image.png" alt="Default Project Image" format="png" width={400} height={400} loading="eager" />
 			)}
 			</div>
 			<div class="mt-1 p-2">

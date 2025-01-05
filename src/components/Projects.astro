@@ -21,10 +21,7 @@ const projects = await getCollection('projects', ({ data }) => {
 					url={project.data.link}
 					title={project.data.title}
 					description={project.data.description}
-					image={{
-						src: project.data.image.src,
-						alt: project.data.image.alt || 'Project image'
-					}}
+					alt={project.data.img_alt}
 					tags={project.data.tags}
 				/>
 			))

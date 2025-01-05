@@ -1,11 +1,8 @@
 ---
-inProgress: true
-title: "Project Title"
-description: "Project Description"
-url: "/project-url"
+inProgress: false
+title: Project title
+description: Project description
+img_alt: project image alt text
 link: https://github.com/veranikabarel?tab=repositories
-tags: ["Tag1", "Tag2"]
-image:
-  src: "/src/assets/images/project.png"
-  alt: "Custom Alt Text"
+tags: ['React', 'CSS', 'Typescript']
 ---

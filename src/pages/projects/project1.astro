@@ -8,58 +8,10 @@ import Layout from '@layouts/Layout.astro';
 
 import * as content from '../../content/projects/project-1.md';
 
-import { Image } from 'astro:assets';
-
 ---
 
 <Layout>
 	<main>
-        <section class="flex h-screen flex-col-reverse items-center justify-center text-center lg:flex-row">
-            <div class="mb-10 flex flex-col items-center lg:mb-0 lg:w-1/2">
-                <div>
-                    <h1 class="mb-10 font text-3xl text-black dark:text-white lg:text-5xl">{content.frontmatter.title}</h1>
-                </div>
-    
-                <p>{content.frontmatter.description}</p>
-            </div>
-            <div data-testid="hero-img" class="mb-10 flex w-1/2 items-center justify-center">
-                <Image
-                    src={content.frontmatter.img}
-                    alt="Coding girl"
-                    format="png"
-                    width={600}
-                    height={600}
-                    loading="eager"
-                />
-            </div>
-        </section>
-
-
-        <section class="flex flex-col-reverse items-center justify-center text-center lg:flex-row">
-            <a
-                href="https://github.com/"
-                target="_blank"
-                rel="noopener"
-                class="flex flex-row text-black hover:text-orange dark:text-white dark:hover:text-orange"
-                aria-label="link to repository"
-            >
-                View full private projects archive
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="ml-1 h-6 w-6"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                </svg>
-            </a>
-        </section>
-
-       
+        <Project content={content} />
 	</main>
 </Layout>

@@ -9,19 +9,6 @@ const projects = await getCollection('projects', ({ data }) => {
 	return !data.inProgress;
 });
 
-// Map projects and match images
-const projectsWithImages = projects.map((project) => {
-	const imagePath = `/src/assets/images/${project.data.img}`; // Match image filenames
-	const img = imageImports[imagePath]; // Get ESM-imported image
-
-	return {
-		...project,
-		data: {
-			...project.data,
-			img: img?.default || null, // Use ESM image or fallback to null
-		},
-	};
-});
 ---
 
 <section

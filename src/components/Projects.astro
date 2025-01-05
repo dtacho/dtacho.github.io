@@ -2,8 +2,25 @@
 import Card from '@components/ui/Card.astro';
 import { getCollection } from 'astro:content';
 
+// Import all images from the assets directory
+const imageImports = import.meta.glob('/src/assets/images/*', { eager: true });
+
 const projects = await getCollection('projects', ({ data }) => {
 	return !data.inProgress;
+});
+
+// Map projects and match images
+const projectsWithImages = projects.map((project) => {
+	const imagePath = `/src/assets/images/${project.data.img}`; // Match image filenames
+	const img = imageImports[imagePath]; // Get ESM-imported image
+
+	return {
+		...project,
+		data: {
+			...project.data,
+			img: img?.default || null, // Use ESM image or fallback to null
+		},
+	};
 });
 ---
 
@@ -21,6 +38,7 @@ const projects = await getCollection('projects', ({ data }) => {
 					url={project.data.link}
 					title={project.data.title}
 					description={project.data.description}
+					img={project.data.img}
 					alt={project.data.img_alt}
 					tags={project.data.tags}
 				/>

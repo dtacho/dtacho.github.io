@@ -1,4 +1,5 @@
 ---
+inProgress: true
 title: "Project Title2"
 description: "Project Description"
 url: "/project-url"
